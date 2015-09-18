@@ -19,16 +19,17 @@ struct sort_pred {
 /*
  * Costruttore - viene chiamato quando JsonParser viene creato
  */
-JsonParser::JsonParser(FILE *fp) {
+JsonParser::JsonParser(FILE *fp) : _hasLoaded(false), _numElements(0), _averageAge(0) {
 	// Creiamo un buffer in memoria per contenere il file
 	_readBuffer = new char[65536]();
 	this->_fp = fp;
-	_hasLoaded = false;
 	// !!!!!!! IMPORTANTISSIMO !!!!!!!
-	// NON ASSUMERE MAI CHE UNA VARIABILE INT APPENA CREATA ABBIA VALORE 0
+	// NON ASSUMERE MAI CHE UNA VARIABILE INT APPENA CREATA ABBIA VALORE ZERO
 	// DEVI IMPOSTARLA TU A ZERO MANUALMENTE
-	_numElements = 0;
-	_averageAge = 0;
+	// LA STESSA COSA VALE PER I BOOL: NON SONO AUTOMATICAMENTE IMPOSTATI A FALSE, MA
+	// HANNO UN VALORE INDEFINITO. QUINDI MI RACCOMANDO, INIZIALIZZARE SEMPRE LE VARIABILI.
+	// Questo puo' essere fatto nella member initializer list, come sopra, oppure qui sotto
+	// all'interno del costruttore.
 }
 
 /*

@@ -35,11 +35,11 @@ public:
 private:
 	// Nota 'stilistica': si usa mettere un _ davanti alle variabili 'member', cioe' quelle private
 	FILE *_fp;
-	int _numElements;
-	char *_readBuffer;
 	bool _hasLoaded;
-	std::pair<std::string,int>_topName;
+	int _numElements;
 	int _averageAge;
+	char *_readBuffer;
+	std::pair<std::string,int>_topName;
 	rapidjson::Document _document;
 };
 
